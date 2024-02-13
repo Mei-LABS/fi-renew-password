@@ -43,6 +43,11 @@ class RenewPasswordPlugin implements Plugin
         return $this;
     }
 
+    public function getPasswordRule(): ?Password
+    {
+        return $this->passwordRule;
+    }
+
     public function passwordExpiresIn(int $days): static
     {
         $this->passwordExpiresIn = $days;

@@ -100,7 +100,7 @@ class RenewPassword extends SimplePage
                             ->label(__('filament-renew-password::renew-password.form.password.label'))
                             ->password()
                             ->required()
-                            ->rules(['different:data.currentPassword', RenewPasswordPlugin::get()->passwordRule(PasswordRule::defaults())]),
+                            ->rules(['different:data.currentPassword', RenewPasswordPlugin::get()->getPasswordRule()]),
                         TextInput::make('PasswordConfirmation')
                             ->label(__('filament-renew-password::renew-password.form.password-confirmation.label'))
                             ->password()
