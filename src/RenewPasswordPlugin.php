@@ -4,6 +4,7 @@ namespace MeiLABS\Filament\RenewPassword;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
+use Illuminate\Validation\Rules\Password;
 use MeiLABS\Filament\RenewPassword\Middleware\RenewPasswordMiddleware;
 
 class RenewPasswordPlugin implements Plugin
@@ -11,6 +12,8 @@ class RenewPasswordPlugin implements Plugin
     protected ?int $passwordExpiresIn = null;
 
     protected ?string $timestampColumn = null;
+
+    protected ?Password $passwordRule = null;
 
     public function getId(): string
     {
@@ -31,6 +34,13 @@ class RenewPasswordPlugin implements Plugin
         if(! $this->getTimestampColumn()) {
             $this->timestampColumn(config('filament-renew-password.renew_password_timestamp_column'));
         }
+    }
+
+    public function passwordRule(Password $rule): ?static
+    {
+        $this->passwordRule = $rule;
+
+        return $this;
     }
 
     public function passwordExpiresIn(int $days): static
